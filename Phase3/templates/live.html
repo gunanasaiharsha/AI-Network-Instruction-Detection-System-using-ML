@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Monitoring</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <meta http-equiv="refresh" content="5">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <h2>
+        <i class="fa-solid fa-shield-halved"></i><br>
+        AI NIDS
+    </h2>
+
+    <a href="/">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
+
+    <a href="/upload">
+        <i class="fa-solid fa-upload"></i>
+        Upload
+    </a>
+
+    <a href="/live">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Live Monitor
+    </a>
+
+    <a href="/history">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        History
+    </a>
+
+    <a href="/analytics">
+        <i class="fa-solid fa-chart-column"></i>
+        Analytics
+    </a>
+
+    <a href="/about">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<div>
+
+<h1>
+
+Live Network Monitoring
+
+</h1>
+
+<p>
+
+Real-Time Intrusion Detection
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+🟢 Monitoring Active
+
+</h3>
+
+</div>
+
+</div>
+
+<!-- ================= STATUS CARDS ================= -->
+
+<div class="cards">
+
+<div class="card blue">
+
+<h3>
+
+<i class="fa-solid fa-network-wired"></i>
+
+Live Flows
+
+</h3>
+
+<h1>
+
+{{ live_data|length }}
+
+</h1>
+
+</div>
+
+<div class="card green">
+
+<h3>
+
+<i class="fa-solid fa-shield"></i>
+
+System Status
+
+</h3>
+
+<h1>
+
+ONLINE
+
+</h1>
+
+</div>
+
+<div class="card orange">
+
+<h3>
+
+<i class="fa-solid fa-clock"></i>
+
+Refresh
+
+</h3>
+
+<h1>
+
+5 sec
+
+</h1>
+
+</div>
+
+</div>
+
+<!-- ================= LIVE TABLE ================= -->
+
+<div class="table-container">
+
+<h2>
+
+<i class="fa-solid fa-satellite-dish"></i>
+
+Recent Network Activity
+
+</h2>
+
+<br>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Time</th>
+
+<th>Flow ID</th>
+
+<th>Attack</th>
+
+<th>Confidence</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in live_data.itertuples() %}
+
+<tr>
+
+<td>
+
+{{ row.Time }}
+
+</td>
+
+<td>
+
+{{ row.Flow_ID }}
+
+</td>
+
+<td>
+
+{{ row.Attack }}
+
+</td>
+
+<td>
+
+{{ row._4 }}
+
+</td>
+
+<td>
+
+{% if row.Status == "ALERT" %}
+
+<span class="status-alert">
+
+🔴 ALERT
+
+</span>
+
+{% else %}
+
+<span class="status-normal">
+
+🟢 NORMAL
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="footer">
+
+<hr>
+
+<br>
+
+<p>
+
+Live Detection Engine
+
+</p>
+
+<p>
+
+Refreshing Every 5 Seconds
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+setInterval(function(){
+
+    location.reload();
+
+},2000);
+
+</script>
+
+
+</body>
+
+</html>

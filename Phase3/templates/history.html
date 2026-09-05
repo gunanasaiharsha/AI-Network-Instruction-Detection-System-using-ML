@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <h2>
+        <i class="fa-solid fa-shield-halved"></i><br>
+        AI NIDS
+    </h2>
+
+    <a href="/"> <i class="fa-solid fa-house"></i> Dashboard </a>
+    <a href="/upload"> <i class="fa-solid fa-upload"></i> Upload </a>
+    <a href="/live"> <i class="fa-solid fa-satellite-dish"></i> Live Monitor </a>
+    <a href="/history"> <i class="fa-solid fa-clock-rotate-left"></i> History </a>
+    <a href="/analytics"> <i class="fa-solid fa-chart-column"></i> Analytics </a>
+    <a href="/about"> <i class="fa-solid fa-circle-info"></i> About </a>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<div>
+
+<h1>History</h1>
+
+<p>CSV Prediction History & Live Detection History</p>
+
+</div>
+
+</div>
+
+<!-- ================= SWITCH BUTTONS ================= -->
+
+<div style="margin-bottom:25px;">
+
+    <a href="/history?type=csv">
+
+        <button class="btn">
+
+            <i class="fa-solid fa-file-csv"></i>
+
+            CSV History
+
+        </button>
+
+    </a>
+
+    <a href="/history?type=live">
+
+        <button class="btn">
+
+            <i class="fa-solid fa-satellite-dish"></i>
+
+            Live Detection
+
+        </button>
+
+    </a>
+
+</div>
+
+<!-- ================= CARDS ================= -->
+
+<div class="cards">
+
+<div class="card blue">
+
+<h3>
+
+<i class="fa-solid fa-database"></i>
+
+Total Records
+
+</h3>
+
+<h1>{{ total_records }}</h1>
+
+</div>
+
+<div class="card green">
+
+<h3>
+
+<i class="fa-solid fa-table"></i>
+
+Current View
+
+</h3>
+
+<h1>
+
+{{ history_type|upper }}
+
+</h1>
+
+</div>
+
+</div>
+
+<!-- ================= SEARCH ================= -->
+
+<input
+type="text"
+id="searchInput"
+class="search-box"
+placeholder="Search..."
+onkeyup="searchTable()">
+
+<!-- ================= TABLE ================= -->
+
+<div class="table-container">
+
+{% if history_type=="csv" %}
+
+<h2>
+
+<i class="fa-solid fa-file-csv"></i>
+
+CSV Prediction History
+
+</h2>
+
+<br>
+
+<table id="historyTable">
+
+<thead>
+
+<tr>
+
+<th>Time</th>
+
+<th>Prediction</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in history.itertuples() %}
+
+<tr>
+
+<td>{{ row.Time }}</td>
+
+<td>{{ row.Prediction }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% else %}
+
+<h2>
+
+<i class="fa-solid fa-network-wired"></i>
+
+Live Detection History
+
+</h2>
+
+<br>
+
+<table id="historyTable">
+
+<thead>
+
+<tr>
+
+<th>Time</th>
+
+<th>Flow ID</th>
+
+<th>Status</th>
+
+<th>Attack</th>
+
+<th>Confidence</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in history.itertuples() %}
+
+<tr>
+
+<td>{{ row.Time }}</td>
+
+<td>{{ row.Flow_ID }}</td>
+
+<td>
+
+{% if row.Status=="ALERT" %}
+
+<span class="status-alert">
+
+🔴 ALERT
+
+</span>
+
+{% else %}
+
+<span class="status-normal">
+
+🟢 NORMAL
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ row.Attack }}</td>
+
+<td>{{ row._5 }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endif %}
+
+</div>
+
+<div class="footer">
+
+<hr><br>
+
+<p>AI Network Intrusion Detection System</p>
+
+<p>History Module</p>
+
+</div>
+
+</div>
+
+<script>
+
+function searchTable(){
+
+let input=document.getElementById("searchInput");
+
+let filter=input.value.toUpperCase();
+
+let table=document.getElementById("historyTable");
+
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let found=false;
+
+let td=tr[i].getElementsByTagName("td");
+
+for(let j=0;j<td.length;j++){
+
+if(td[j]){
+
+let txt=td[j].textContent||td[j].innerText;
+
+if(txt.toUpperCase().indexOf(filter)>-1){
+
+found=true;
+
+}
+
+}
+
+}
+
+tr[i].style.display=found?"":"none";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

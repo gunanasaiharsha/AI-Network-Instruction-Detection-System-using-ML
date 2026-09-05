@@ -1,0 +1,585 @@
+/* ==========================================================
+   AI NETWORK IDS - PROFESSIONAL CYBERSECURITY DASHBOARD
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#0F172A;
+
+    color:#F8FAFC;
+
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:250px;
+
+    height:100vh;
+
+    background:#111827;
+
+    border-right:1px solid #334155;
+
+    padding-top:25px;
+
+}
+
+.sidebar h2{
+
+    text-align:center;
+
+    color:#38BDF8;
+
+    margin-bottom:35px;
+
+}
+
+.sidebar a{
+
+    display:block;
+
+    padding:15px 25px;
+
+    text-decoration:none;
+
+    color:#CBD5E1;
+
+    transition:.3s;
+
+    font-size:16px;
+
+}
+
+.sidebar a:hover{
+
+    background:#1E293B;
+
+    color:#38BDF8;
+
+    border-left:5px solid #38BDF8;
+
+}
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+
+.main{
+
+    margin-left:250px;
+
+    padding:30px;
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.header h1{
+
+    font-size:30px;
+
+}
+
+.header p{
+
+    color:#94A3B8;
+
+}
+
+/* ==========================================================
+   DASHBOARD CARDS
+========================================================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.card{
+
+    background:#1E293B;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.card h3{
+
+    color:#94A3B8;
+
+    margin-bottom:12px;
+
+    font-size:16px;
+
+}
+
+.card h1{
+
+    font-size:34px;
+
+}
+
+.blue{
+
+    border-left:6px solid #3B82F6;
+
+}
+
+.green{
+
+    border-left:6px solid #22C55E;
+
+}
+
+.red{
+
+    border-left:6px solid #EF4444;
+
+}
+
+.orange{
+
+    border-left:6px solid #F59E0B;
+
+}
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.table-container{
+
+    background:#1E293B;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    overflow:auto;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+table th{
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:14px;
+
+    text-align:left;
+
+}
+
+table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #334155;
+
+}
+
+table tr:hover{
+
+    background:#334155;
+
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.btn{
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:#1D4ED8;
+
+}
+
+/* ==========================================================
+   FILE INPUT
+========================================================== */
+
+input[type=file]{
+
+    width:100%;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    border:2px dashed #38BDF8;
+
+    background:#111827;
+
+    color:white;
+
+}
+
+/* ==========================================================
+   SEARCH BOX
+========================================================== */
+
+.search-box{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:20px;
+
+    border-radius:8px;
+
+    border:none;
+
+    background:#0F172A;
+
+    color:white;
+
+}
+
+/* ==========================================================
+   STATUS
+========================================================== */
+
+.status-normal{
+
+    color:#22C55E;
+
+    font-weight:bold;
+
+}
+
+.status-alert{
+
+    color:#EF4444;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================================
+   CHART
+========================================================== */
+
+.chart{
+
+    background:#1E293B;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin-top:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:#94A3B8;
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:900px){
+
+.sidebar{
+
+    width:70px;
+
+}
+
+.sidebar h2{
+
+    display:none;
+
+}
+
+.sidebar a{
+
+    text-align:center;
+
+    padding:18px 0;
+
+    font-size:13px;
+
+}
+
+.main{
+
+    margin-left:70px;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+
+/* ===========================
+UPLOAD FORM
+=========================== */
+
+form{
+
+    margin-top:20px;
+
+}
+
+input[type=file]{
+
+    cursor:pointer;
+
+}
+
+.btn{
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+.btn i{
+
+    margin-right:8px;
+
+}
+
+/* ===========================
+TABLE TITLE
+=========================== */
+
+.table-container h2{
+
+    color:#38BDF8;
+
+}
+
+/* ===========================
+CARD TITLE
+=========================== */
+
+.card h2{
+
+    color:#38BDF8;
+
+}
+
+
+/* =====================================
+LIVE STATUS
+===================================== */
+
+.status-normal{
+
+    background:#16A34A;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+}
+
+.status-alert{
+
+    background:#DC2626;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+}
+
+/* =====================================
+LIVE TABLE
+===================================== */
+
+.table-container{
+
+    margin-top:25px;
+
+}
+
+.table-container h2{
+
+    color:#38BDF8;
+
+}
+
+
+/* =====================================
+SEARCH BOX
+===================================== */
+
+.search-box{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:20px;
+
+    border-radius:10px;
+
+    border:1px solid #334155;
+
+    background:#111827;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+.search-box:focus{
+
+    outline:none;
+
+    border:1px solid #38BDF8;
+
+}
+
+/* =====================================
+HISTORY TABLE
+===================================== */
+
+#historyTable tr:hover{
+
+    background:#334155;
+
+}
+
+/* ==========================
+CHART
+========================== */
+
+.chart{
+
+background:#1E293B;
+
+padding:25px;
+
+border-radius:15px;
+
+margin-top:25px;
+
+box-shadow:0 10px 20px rgba(0,0,0,.35);
+
+}
+
+.chart h2{
+
+color:#38BDF8;
+
+margin-bottom:20px;
+
+}
+
+canvas{
+
+max-height:420px;
+
+}
+
+

@@ -1,0 +1,8 @@
+{
+    "Model": "Random Forest",
+    "Accuracy": 99.58,
+    "Features": 55,
+    "Classes": 8,
+    "Training Samples": 97190,
+    "Testing Samples": 24298
+}

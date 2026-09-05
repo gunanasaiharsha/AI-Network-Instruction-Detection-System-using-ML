@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Network IDS Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <h2><i class="fa-solid fa-shield-halved"></i><br>AI NIDS</h2>
+
+    <a href="/">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
+
+    <a href="/upload">
+        <i class="fa-solid fa-upload"></i>
+        Upload
+    </a>
+
+    <a href="/live">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Live Monitor
+    </a>
+
+    <a href="/history">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        History
+    </a>
+
+    <a href="/analytics">
+        <i class="fa-solid fa-chart-column"></i>
+        Analytics
+    </a>
+
+    <a href="/about">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<div>
+
+<h1>
+
+AI Network Intrusion Detection System
+
+</h1>
+
+<p>
+
+Real-Time Network Security Dashboard
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+🟢 System Online
+
+</h3>
+
+</div>
+
+</div>
+
+<!-- ================= CARDS ================= -->
+
+<div class="cards">
+
+<div class="card blue">
+
+<h3>
+
+Total Flows
+
+</h3>
+
+<h1>
+
+{{ total_flows }}
+
+</h1>
+
+</div>
+
+<div class="card red">
+
+<h3>
+
+Total Attacks
+
+</h3>
+
+<h1>
+
+{{ total_attacks }}
+
+</h1>
+
+</div>
+
+<div class="card green">
+
+<h3>
+
+Benign Traffic
+
+</h3>
+
+<h1>
+
+{{ benign }}
+
+</h1>
+
+</div>
+
+<div class="card orange">
+
+<h3>
+
+Accuracy
+
+</h3>
+
+<h1>
+
+{{ accuracy }}%
+
+</h1>
+
+</div>
+
+</div>
+
+<!-- ================= RECENT ALERTS ================= -->
+
+<div class="table-container">
+
+<h2>
+
+Recent Detection Logs
+
+</h2>
+
+<br>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Time</th>
+
+<th>Flow ID</th>
+
+<th>Attack</th>
+
+<th>Confidence</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in recent_logs.itertuples() %}
+
+<tr>
+
+<td>{{ row.Time }}</td>
+
+<td>{{ row.Flow_ID }}</td>
+
+<td>{{ row.Attack }}</td>
+
+<td>{{ row._4 }}</td>
+
+<td>
+
+{% if row.Status == "ALERT" %}
+
+<span class="status-alert">
+
+🔴 ALERT
+
+</span>
+
+{% else %}
+
+<span class="status-normal">
+
+🟢 NORMAL
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="footer">
+
+<hr>
+
+<br>
+
+<p>
+
+AI-Based Network Intrusion Detection System
+
+</p>
+
+<p>
+
+Random Forest | CICIDS2017 | 55 Features
+
+</p>
+
+<p>
+
+Developed using Flask + Machine Learning
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+//setInterval(function(){
+
+//    location.reload();
+
+//},3000);
+
+</script>
+
+</body>
+
+</html>

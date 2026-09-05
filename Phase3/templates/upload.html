@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Dataset</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <h2>
+        <i class="fa-solid fa-shield-halved"></i><br>
+        AI NIDS
+    </h2>
+
+    <a href="/">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
+
+    <a href="/upload">
+        <i class="fa-solid fa-upload"></i>
+        Upload
+    </a>
+
+    <a href="/live">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Live Monitor
+    </a>
+
+    <a href="/history">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        History
+    </a>
+
+    <a href="/analytics">
+        <i class="fa-solid fa-chart-column"></i>
+        Analytics
+    </a>
+
+    <a href="/about">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<div class="header">
+
+<div>
+
+<h1>
+
+Dataset Upload
+
+</h1>
+
+<p>
+
+Upload a CSV file for attack prediction
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ================= UPLOAD CARD ================= -->
+
+<div class="card">
+
+<h2>
+
+<i class="fa-solid fa-file-csv"></i>
+
+Upload CSV Dataset
+
+</h2>
+
+<br>
+
+<form method="POST"
+
+      enctype="multipart/form-data">
+
+<input
+
+type="file"
+
+name="file"
+
+accept=".csv"
+
+required>
+
+<br><br>
+
+<button
+
+class="btn"
+
+type="submit">
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+Upload & Predict
+
+</button>
+
+</form>
+
+</div>
+
+<br>
+
+<!-- ================= RESULT ================= -->
+
+{% if predictions is not none %}
+
+<div class="table-container">
+
+<h2>
+
+Prediction Summary
+
+</h2>
+
+<br>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Attack Type
+
+</th>
+
+<th>
+
+Detected Flows
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in predictions.itertuples() %}
+
+<tr>
+
+<td>
+
+{{ row.Prediction }}
+
+</td>
+
+<td>
+
+{{ row.Count }}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endif %}
+
+<div class="footer">
+
+<hr>
+
+<br>
+
+<p>
+
+AI-Based Network Intrusion Detection System
+
+</p>
+
+<p>
+
+Random Forest | CICIDS2017 Dataset
+
+</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
